@@ -1,12 +1,13 @@
 package controller
 
 import (
+	"net/http"
+	"strings"
+
 	req "feiyu.com/wx/api/model"
 	"feiyu.com/wx/api/service"
 	"feiyu.com/wx/api/vo"
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"strings"
 )
 
 // AddTextMessageApi 添加要发送的文本消息进入管理器
@@ -302,6 +303,7 @@ func NewSyncHistoryMessageApi(ctx *gin.Context) {
 	if !validateData(ctx, &reqModel) {
 		return
 	}
+
 	result := service.NewSyncHistoryMessageService(queryKey, *reqModel)
 	ctx.JSON(http.StatusOK, result)
 }
